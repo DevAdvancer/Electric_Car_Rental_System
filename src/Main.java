@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import Authentication.*;
+
 public class Main {
   static Scanner sc = new Scanner(System.in);
 
