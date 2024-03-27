@@ -10,6 +10,7 @@ public class Main {
   }
 
   public static void main(String[] args) {
+    Authentication Auth = new Authentication();
     System.out.println("Choose to Login or Signup");
     System.out.println("1. Login");
     System.out.println("2. Signup");
@@ -22,12 +23,12 @@ public class Main {
         int option1 = sc.nextInt();
         switch (option1) {
           case 1:
-            Authentication adminAuth = new Authentication();
-            adminAuth.admin();
-            adminAuth.authenticationAdmin();
+            Auth.admin();
+            Auth.authenticationAdmin();
             break;
           case 2:
-            // Implement customer login
+            Auth.customer();
+            Auth.authenticationCustomer();
             break;
           default:
             System.out.println("Invalid Option");
