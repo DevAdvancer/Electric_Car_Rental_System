@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.Scanner;
 import Authentication.*;
 
@@ -9,7 +10,7 @@ public class Main {
     System.out.println("=====|| Please Feel Comfortable using our System  ||======");
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws ClassNotFoundException, SQLException {
     Authentication Auth = new Authentication();
     SignUp Sign = new SignUp();
     System.out.println("Choose to Login or Signup");
