@@ -8,7 +8,7 @@ public class SignUp {
   protected String UserName;
   protected String Password;
 
-  public void sighnUp() {
+  public void signUp() {
     System.out.print("Username (username will be of in small letters and without any space in between): ");
     UserName = sc.nextLine();
     System.out.print("Password: ");

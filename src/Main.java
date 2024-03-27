@@ -37,7 +37,7 @@ public class Main {
         }
         break;
       case 2:
-        Sign.sighnUp();
+        Sign.signUp();
         Sign.addToSql();
         break;
       default:
