@@ -11,6 +11,7 @@ public class Main {
 
   public static void main(String[] args) {
     Authentication Auth = new Authentication();
+    SignUp Sign = new SignUp();
     System.out.println("Choose to Login or Signup");
     System.out.println("1. Login");
     System.out.println("2. Signup");
@@ -36,7 +37,8 @@ public class Main {
         }
         break;
       case 2:
-        // Implement signup functionality
+        Sign.sighnUp();
+        Sign.addToSql();
         break;
       default:
         System.out.println("Invalid Option");
