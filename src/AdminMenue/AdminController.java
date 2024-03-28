@@ -3,63 +3,57 @@ package AdminMenue;
 import java.util.Scanner;
 
 public class AdminController {
-  Scanner scanner = new Scanner(System.in);
+  Scanner sc = new Scanner(System.in);
   public void displayMenu() {
-        System.out.println("Admin Menu:");
-        System.out.println("1. Add Vehicle");
-        System.out.println("2. Update Vehicle");
-        System.out.println("3. Delete Vehicle");
-        System.out.println("7. View Rentals");
-        System.out.println("0. Exit");
-        System.out.print("Enter your choice: ");
+    System.out.println("Admin Menu:");
+    System.out.println("1. Add Vehicle");
+    System.out.println("2. Update Vehicle");
+    System.out.println("3. Delete Vehicle");
+    System.out.println("7. View Rentals");
+    System.out.println("0. Exit");
+    System.out.print("Enter your choice: ");
   }
 
   public void MainMenu() {
     boolean exit = false;
     while (!exit) {
       displayMenu();
-      int choice = scanner.nextInt();
-      scanner.nextLine();
-
+      int choice = sc.nextInt();
+      sc.nextLine();
       switch (choice) {
-                case 1:
-                    addVehicle();
-                    break;
-                case 2:
-                    updateVehicle();
-                    break;
-                case 3:
-                    deleteVehicle();
-                    break;
-                case 4:
-                    addUser();
-                    break;
-                case 5:
-                    updateUser();
-                    break;
-                case 6:
-                    deleteUser();
-                    break;
-                case 7:
-                    viewRentals();
-                    break;
-                case 8:
-                    generateReport();
-                    break;
-
-
-
-                case 0:
-                    exit = true;
-                    System.out.println("Exiting Admin Menu.");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
-
-        scanner.close();
+        case 1:
+          addVehicle();
+          break;
+        case 2:
+          updateVehicle();
+          break;
+        case 3:
+          deleteVehicle();
+          break;
+        case 4:
+          addUser();
+          break;
+        case 5:
+          updateUser();
+          break;
+        case 6:
+          deleteUser();
+          break;
+        case 7:
+          viewRentals();
+          break;
+        case 8:
+          generateReport();
+          break;
+        case 0:
+          exit = true;
+          System.out.println("Exiting Admin Menu.");
+          break;
+        default:
+          System.out.println("Invalid choice. Please try again.");
+      }
     }
+  }
 
     private void addVehicle() {
         // Implement logic to add a new vehicle
