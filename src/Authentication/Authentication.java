@@ -9,7 +9,7 @@ public class Authentication {
   public Authentication() throws ClassNotFoundException, SQLException {
     String url = "jdbc:mysql://localhost:3306/project";
     String uname = "root";
-    String pass = "AbhirupKeya";
+    String pass = "password";
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection con = DriverManager.getConnection(url, uname, pass);
   }
