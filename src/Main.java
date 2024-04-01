@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import Authentication.*;
+import AdminMenue.*;
 
 public class Main {
   static Scanner sc = new Scanner(System.in);
@@ -13,19 +14,16 @@ public class Main {
     Authentication Auth = new Authentication();
     SignUp Sign = new SignUp();
     Login login = new Login();
+    AdminController admin = new AdminController();
+
     System.out.println("Choose Admin or Customer");
     System.out.println("1. Admin");
     System.out.println("2. Customer");
     int option = sc.nextInt();
     switch (option) {
       case 1:
-        System.out.println("Login");
-        int option1 = sc.nextInt();
-        if (option1 == 1) {
-          Auth.admin();
-        } else {
-          System.out.println("Invalid Option");
-        }
+        Auth.admin();
+        admin.MainMenu();
         break;
       case 2:
         System.out.println("Choose Option: ");

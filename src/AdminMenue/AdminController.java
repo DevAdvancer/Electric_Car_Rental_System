@@ -1,8 +1,10 @@
 package AdminMenue;
 
 import java.util.Scanner;
+import java.sql.*;
 
 public class AdminController {
+  private String vehicleName ;
   Scanner sc = new Scanner(System.in);
   public void displayMenu() {
     System.out.println("Admin Menu:");
@@ -44,7 +46,9 @@ public class AdminController {
   }
 
   protected void addVehicle() {
-    System.out.println("Add a New Vehicle in the inventory..............");
+    System.out.print("Enter Vehicle Name: ");
+    vehicleName = sc.nextLine();
+
 
   }
 
