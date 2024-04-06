@@ -13,7 +13,7 @@ public class SignUp {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
       String uname = "root";
-      String pass = "AbhirupKeya";
+      String pass = "password";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
       createCustomersTableIfNotExists(); // Create table if not exists

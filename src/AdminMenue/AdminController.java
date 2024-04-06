@@ -4,14 +4,14 @@ import java.util.Scanner;
 import java.sql.*;
 
 public class AdminController {
-  private Scanner sc = new Scanner(System.in);
+  private final Scanner sc = new Scanner(System.in);
   private Connection con;
 
   public AdminController() {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
       String uname = "root";
-      String pass = "AbhirupKeya";
+      String pass = "password";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
       createTableIfNotExists(); // Create table if not exists
