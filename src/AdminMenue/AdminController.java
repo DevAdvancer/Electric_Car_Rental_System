@@ -4,8 +4,32 @@ import java.util.Scanner;
 import java.sql.*;
 
 public class AdminController {
-  private String vehicleName ;
-  Scanner sc = new Scanner(System.in);
+  private Scanner sc = new Scanner(System.in);
+  private Connection con;
+
+  public AdminController() {
+    try {
+      String url = "jdbc:mysql://localhost:3306/project";
+      String uname = "root";
+      String pass = "AbhirupKeya";
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      con = DriverManager.getConnection(url, uname, pass);
+      createTableIfNotExists(); // Create table if not exists
+    } catch (ClassNotFoundException | SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void createTableIfNotExists() {
+    try {
+      String sql = "CREATE TABLE IF NOT EXISTS CAR (car_id INT AUTO_INCREMENT PRIMARY KEY, vehicleName VARCHAR(255))";
+      Statement stmt = con.createStatement();
+      stmt.execute(sql);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   public void displayMenu() {
     System.out.println("Admin Menu:");
     System.out.println("1. Add Vehicle");
@@ -16,7 +40,7 @@ public class AdminController {
     System.out.print("Enter your choice: ");
   }
 
-  public void MainMenu() {
+  public void mainMenu() {
     boolean exit = false;
     while (!exit) {
       displayMenu();
@@ -46,21 +70,69 @@ public class AdminController {
   }
 
   protected void addVehicle() {
-    System.out.print("Enter Vehicle Name: ");
-    vehicleName = sc.nextLine();
-
-
+    try {
+      PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO CAR (vehicleName) VALUES (?)");
+      System.out.print("Enter vehicle name: ");
+      String vehicleName = sc.nextLine();
+      preparedStatement.setString(1, vehicleName);
+      int rowsInserted = preparedStatement.executeUpdate();
+      if (rowsInserted > 0) {
+        System.out.println("Vehicle added successfully!");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   protected void updateVehicle() {
-    System.out.println("Updating the vehicle which is present in the inventory..............");
+    try {
+      System.out.println("Enter the car ID to update:");
+      int carId = sc.nextInt();
+      sc.nextLine(); // Consume newline character
+      System.out.print("Enter updated vehicle name: ");
+      String updatedVehicleName = sc.nextLine();
+      PreparedStatement preparedStatement = con.prepareStatement("UPDATE CAR SET vehicleName = ? WHERE car_id = ?");
+      preparedStatement.setString(1, updatedVehicleName);
+      preparedStatement.setInt(2, carId);
+      int rowsUpdated = preparedStatement.executeUpdate();
+      if (rowsUpdated > 0) {
+        System.out.println("Vehicle updated successfully!");
+      } else {
+        System.out.println("No vehicle found with the provided ID.");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   protected void deleteVehicle() {
-    System.out.println("Select the car from the inventory to remove the records.....................");
+    try {
+      System.out.println("Enter the car ID to delete:");
+      int carId = sc.nextInt();
+      PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM CAR WHERE car_id = ?");
+      preparedStatement.setInt(1, carId);
+      int rowsDeleted = preparedStatement.executeUpdate();
+      if (rowsDeleted > 0) {
+        System.out.println("Vehicle deleted successfully!");
+      } else {
+        System.out.println("No vehicle found with the provided ID.");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   protected void viewRentals() {
-    System.out.println("View All the cars that are being rented.........................");
+    try {
+      Statement statement = con.createStatement();
+      ResultSet resultSet = statement.executeQuery("SELECT * FROM RentalCars");
+      while (resultSet.next()) {
+        System.out.println("Car ID: " + resultSet.getInt("car_id"));
+        // Print other rental details as needed
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
+
 }
