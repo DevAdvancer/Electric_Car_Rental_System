@@ -125,10 +125,14 @@ public class AdminController {
   protected void viewRentals() {
     try {
       Statement statement = con.createStatement();
-      ResultSet resultSet = statement.executeQuery("SELECT * FROM RentalCars");
+      ResultSet resultSet = statement.executeQuery("SELECT rc.car_id, rc.customer_id, c.customer_name, rd.start_date, rd.end_date FROM RentalCars rc INNER JOIN Customers c ON rc.customer_id = c.customer_id INNER JOIN RentalDates rd ON rc.rental_id = rd.rental_id");
+
       while (resultSet.next()) {
         System.out.println("Car ID: " + resultSet.getInt("car_id"));
-        // Print other rental details as needed
+        System.out.println("Customer Name: " + resultSet.getString("customer_name"));
+        System.out.println("Start Date: " + resultSet.getDate("start_date"));
+        System.out.println("End Date: " + resultSet.getDate("end_date"));
+        // You can print other rental details as needed
       }
     } catch (SQLException e) {
       e.printStackTrace();
