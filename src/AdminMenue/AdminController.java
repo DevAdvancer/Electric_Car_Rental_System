@@ -14,13 +14,13 @@ public class AdminController {
       String pass = "password";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
-      createTableIfNotExists(); // Create table if not exists
+      createTableIfNotExists();
     } catch (ClassNotFoundException | SQLException e) {
       e.printStackTrace();
     }
   }
 
-  public void createTableIfNotExists() {
+  private void createTableIfNotExists() {
     try {
       String sql = "CREATE TABLE IF NOT EXISTS CAR (car_id INT AUTO_INCREMENT PRIMARY KEY, vehicleName VARCHAR(255))";
       Statement stmt = con.createStatement();
@@ -30,7 +30,7 @@ public class AdminController {
     }
   }
 
-  public void displayMenu() {
+  private void displayMenu() {
     System.out.println("Admin Menu:");
     System.out.println("1. Add Vehicle");
     System.out.println("2. Update Vehicle");
@@ -132,11 +132,9 @@ public class AdminController {
         System.out.println("Customer Name: " + resultSet.getString("customer_name"));
         System.out.println("Start Date: " + resultSet.getDate("start_date"));
         System.out.println("End Date: " + resultSet.getDate("end_date"));
-        // You can print other rental details as needed
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
   }
-
 }

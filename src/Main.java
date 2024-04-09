@@ -23,7 +23,7 @@ public class Main {
     switch (option) {
       case 1:
         Auth.admin();
-        admin.MainMenu();
+        admin.mainMenu();
         break;
       case 2:
         System.out.println("Choose Option: ");
