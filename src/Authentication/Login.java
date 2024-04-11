@@ -14,7 +14,7 @@ public class Login {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
       String uname = "root";
-      String pass = "password";
+      String pass = "AbhirupKeya";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
     } catch (ClassNotFoundException | SQLException e) {
@@ -34,7 +34,7 @@ public class Login {
 
   public void authenticate(String username, String password) {
     try {
-      String sql = "SELECT * FROM customers WHERE username = ? AND password = ?";
+      String sql = "SELECT * FROM customer WHERE username = ? AND password = ?";
       PreparedStatement stmt = con.prepareStatement(sql);
       stmt.setString(1, username);
       stmt.setString(2, password);

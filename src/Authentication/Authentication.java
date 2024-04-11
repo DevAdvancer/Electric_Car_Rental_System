@@ -11,7 +11,7 @@ public class Authentication {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
       String uname = "root";
-      String pass = "password";
+      String pass = "AbhirupKeya";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
       createTableIfNotExists(); // Create table if not exists

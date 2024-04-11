@@ -13,7 +13,7 @@ public class SignUp {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
       String uname = "root";
-      String pass = "password";
+      String pass = "AbhirupKeya";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
       createCustomersTableIfNotExists(); // Create table if not exists
@@ -23,7 +23,7 @@ public class SignUp {
   }
 
   public void createCustomersTableIfNotExists() throws SQLException {
-    String sql = "CREATE TABLE IF NOT EXISTS customers (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), password VARCHAR(50), name VARCHAR(20))";
+    String sql = "CREATE TABLE IF NOT EXISTS customer (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), password VARCHAR(50), name VARCHAR(30))";
     PreparedStatement stmt = con.prepareStatement(sql);
     stmt.execute();
   }
@@ -44,7 +44,7 @@ public class SignUp {
 
   public void addToSql(String Name) {
     try {
-      String sql = "INSERT INTO customers (username, password, Name) VALUES (?, ?, ?)";
+      String sql = "INSERT INTO customers (username, password, name) VALUES (?, ?, ?)";
       PreparedStatement stmt = con.prepareStatement(sql);
       stmt.setString(1, UserName);
       stmt.setString(2, Password);
