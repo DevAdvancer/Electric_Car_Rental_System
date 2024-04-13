@@ -14,7 +14,7 @@ public class Login {
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
     } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
+      System.out.println("Database Connection Error !!! " + e.getMessage());
     }
   }
 
@@ -30,7 +30,7 @@ public class Login {
 
   public void authenticate(String username, String password) {
     try {
-      String sql = "SELECT * FROM customer WHERE username = ? AND password = ?";
+      String sql = "SELECT * FROM CUSTOMER WHERE USERNAME = ? AND PASSWORD = ?";
       PreparedStatement stmt = con.prepareStatement(sql);
       stmt.setString(1, username);
       stmt.setString(2, password);
@@ -41,7 +41,7 @@ public class Login {
         System.out.println("Authentication Failed. Username or Password is incorrect.");
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      System.out.println("Database Query Execution Error !!! " + e.getMessage());
     }
   }
 }

@@ -16,12 +16,12 @@ public class Authentication {
       con = DriverManager.getConnection(url, uname, pass);
       createTableIfNotExists(); // Create table if not exists
     } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
+      System.out.println("Database Connection Error !!!" + e.getMessage());
     }
   }
 
   public void createTableIfNotExists() throws SQLException {
-    String sql = "CREATE TABLE IF NOT EXISTS Admin (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), password VARCHAR(50))";
+    String sql = "CREATE TABLE IF NOT EXISTS ADMIN (ADMIN_ID INT AUTO_INCREMENT PRIMARY KEY, USERNAME VARCHAR(50), PASSWORD VARCHAR(50), NAME VARCHAR(30))";
     Statement stmt = con.createStatement();
     stmt.execute(sql);
   }
@@ -48,7 +48,7 @@ public class Authentication {
         System.out.println("Authentication Failed.");
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      System.out.println("Database Query Execution Error !!! " + e.getMessage());
     }
   }
 }

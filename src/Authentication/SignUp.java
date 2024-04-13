@@ -15,12 +15,12 @@ public class SignUp {
       con = DriverManager.getConnection(url, uname, pass);
       createCustomersTableIfNotExists(); // Create table if not exists
     } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
+      System.out.println("Database Connection Error !!!" + e.getMessage());
     }
   }
 
   public void createCustomersTableIfNotExists() throws SQLException {
-    String sql = "CREATE TABLE IF NOT EXISTS customer (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50), password VARCHAR(50), name VARCHAR(30))";
+    String sql = "CREATE TABLE IF NOT EXISTS CUSTOMER (Customer_ID INT AUTO_INCREMENT PRIMARY KEY, USERNAME VARCHAR(50), PASSWORD VARCHAR(50), NAME VARCHAR(30))";
     PreparedStatement stmt = con.prepareStatement(sql);
     stmt.execute();
   }
@@ -34,14 +34,14 @@ public class SignUp {
     UserName = sc.nextLine().toLowerCase().replaceAll("\\s", "");
     System.out.print("Password: ");
     Password = sc.nextLine();
-    System.out.println("Enter Name: ");
+    System.out.print("Enter Name: ");
     String Name = sc.nextLine();
     addToSql(Name);
   }
 
   public void addToSql(String Name) {
     try {
-      String sql = "INSERT INTO customers (username, password, name) VALUES (?, ?, ?)";
+      String sql = "INSERT INTO customer (username, password, name) VALUES (?, ?, ?)";
       PreparedStatement stmt = con.prepareStatement(sql);
       stmt.setString(1, UserName);
       stmt.setString(2, Password);
@@ -49,7 +49,7 @@ public class SignUp {
       stmt.executeUpdate();
       System.out.println("Successfully Signed Up.");
     } catch (SQLException e) {
-      e.printStackTrace();
+      System.out.println("Database Query Execution Error !!! " + e.getMessage());
     }
   }
 }

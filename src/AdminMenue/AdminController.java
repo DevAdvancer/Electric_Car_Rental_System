@@ -11,12 +11,12 @@ public class AdminController {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
       String uname = "root";
-      String pass = "password";
+      String pass = "AbhirupKeya";
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
       createTableIfNotExists();
     } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
   }
 
