@@ -41,7 +41,7 @@ public class SignUp {
 
   public void addToSql(String Name) {
     try {
-      String sql = "INSERT INTO customer (username, password, name) VALUES (?, ?, ?)";
+      String sql = "INSERT INTO CUSTOMER (USERNAME, PASSWORD, NAME) VALUES (?, ?, ?)";
       PreparedStatement stmt = con.prepareStatement(sql);
       stmt.setString(1, UserName);
       stmt.setString(2, Password);

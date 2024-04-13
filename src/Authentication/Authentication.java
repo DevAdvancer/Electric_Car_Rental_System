@@ -37,7 +37,7 @@ public class Authentication {
 
   public void authenticationAdmin(String username, String password) {
     try {
-      String sql = "SELECT * FROM Admin WHERE username = ? AND password = ?";
+      String sql = "SELECT * FROM ADMIN WHERE USERNAME = ? AND PASSWORD = ?";
       PreparedStatement stmt = con.prepareStatement(sql);
       stmt.setString(1, username);
       stmt.setString(2, password);
