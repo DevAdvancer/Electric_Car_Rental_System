@@ -1,10 +1,12 @@
 package Authentication;
 
+import java.io.Console;
 import java.util.Scanner;
 import java.sql.*;
 
 public class Login {
   private Connection con;
+  private Console console = System.console();
 
   public Login() {
     try {
@@ -23,8 +25,9 @@ public class Login {
   public void login() {
     System.out.print("Enter Username: ");
     String username = sc.nextLine().toLowerCase().replaceAll("\\s", "");
-    System.out.print("Enter Password: ");
-    String password = sc.nextLine();
+//    System.out.print("Enter Password: ");
+    char[] passwordChars = console.readPassword("Enter Password: ");
+    String password = new String(passwordChars);
     authenticate(username, password);
   }
 

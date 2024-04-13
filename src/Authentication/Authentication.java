@@ -1,11 +1,13 @@
 package Authentication;
 
+import java.io.Console;
 import java.util.Scanner;
 import java.sql.*;
 
 // Authentication System
 public class Authentication {
   private Connection con;
+  final Console console = System.console();
 
   public Authentication() {
     try {
@@ -30,8 +32,10 @@ public class Authentication {
     Scanner sc = new Scanner(System.in);
     System.out.print("Admin Username: ");
     String adminUserName = sc.next();
-    System.out.print("Admin Password: ");
-    String adminPassword = sc.nextLine();
+//    System.out.print("Admin Password: ");
+//    String adminPassword = sc.nextLine();
+    char[] passwordChar = console.readPassword("Admin Password: ");
+    String adminPassword = new String(passwordChar);
     authenticationAdmin(adminUserName, adminPassword);
   }
 
