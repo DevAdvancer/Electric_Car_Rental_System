@@ -39,6 +39,7 @@ public class Login {
         System.out.println("Login Successful.");
       } else {
         System.out.println("Authentication Failed. Username or Password is incorrect.");
+        System.exit(0);
       }
     } catch (SQLException e) {
       System.out.println("Database Query Execution Error !!! " + e.getMessage());

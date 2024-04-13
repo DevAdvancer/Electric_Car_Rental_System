@@ -31,9 +31,9 @@ public class SignUp {
 
   public void signUp() {
     System.out.print("Username (username will be in lowercase without spaces): ");
-    UserName = sc.nextLine().toLowerCase().replaceAll("\\s", "");
+    UserName = sc.next().toLowerCase().replaceAll("\\s", "");
     System.out.print("Password: ");
-    Password = sc.nextLine();
+    Password = sc.next();
     System.out.print("Enter Name: ");
     String Name = sc.nextLine();
     addToSql(Name);

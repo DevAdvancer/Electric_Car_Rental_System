@@ -29,7 +29,7 @@ public class Authentication {
   public void admin() {
     Scanner sc = new Scanner(System.in);
     System.out.print("Admin Username: ");
-    String adminUserName = sc.nextLine();
+    String adminUserName = sc.next();
     System.out.print("Admin Password: ");
     String adminPassword = sc.nextLine();
     authenticationAdmin(adminUserName, adminPassword);
@@ -46,6 +46,7 @@ public class Authentication {
         System.out.println("Login Successful.");
       } else {
         System.out.println("Authentication Failed.");
+        System.exit(0);
       }
     } catch (SQLException e) {
       System.out.println("Database Query Execution Error !!! " + e.getMessage());
