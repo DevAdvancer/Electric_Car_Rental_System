@@ -31,7 +31,7 @@ public class Authentication {
     System.out.print("Admin Username: ");
     String adminUserName = sc.next();
     System.out.print("Admin Password: ");
-    String adminPassword = sc.nextLine();
+    String adminPassword = sc.next();
     authenticationAdmin(adminUserName, adminPassword);
   }
 
@@ -43,9 +43,9 @@ public class Authentication {
       stmt.setString(2, password);
       ResultSet rs = stmt.executeQuery();
       if (rs.next()) {
-        System.out.println("Login Successful.");
+        System.out.println("Login Successful............");
       } else {
-        System.out.println("Authentication Failed.");
+        System.out.println("Authentication Failed...............");
         System.exit(0);
       }
     } catch (SQLException e) {
