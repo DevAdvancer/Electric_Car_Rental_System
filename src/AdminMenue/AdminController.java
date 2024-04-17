@@ -26,7 +26,7 @@ public class AdminController {
       Statement stmt = con.createStatement();
       stmt.execute(sql);
     } catch (SQLException e) {
-      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
   }
 

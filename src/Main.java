@@ -1,8 +1,8 @@
-import java.io.IOException;
 import java.util.*;
 import Authentication.*;
 import AdminMenue.*;
 import java.sql.*;
+import CustomerMenu.*;
 
 public class Main {
   static Connection con = null;
@@ -33,6 +33,7 @@ public class Main {
       SignUp Sign = new SignUp();
       Login login = new Login();
       AdminController admin = new AdminController();
+      CustomerController customer = new CustomerController();
 
       System.out.println("Choose Admin or Customer");
       System.out.println("1. Admin");
@@ -52,9 +53,15 @@ public class Main {
           switch (option2) {
             case 1:
               login.login();
+              String Name1 = login.Name;
+              customer.setName(Name1);
+              customer.mainMenu();
               break;
             case 2:
               Sign.signUp();
+              String Name2 = Sign.Name;
+              customer.setName(Name2);
+              customer.mainMenu();
               break;
             default:
               System.out.println("Invalid Option");

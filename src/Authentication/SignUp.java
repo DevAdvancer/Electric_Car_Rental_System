@@ -5,7 +5,9 @@ import java.sql.*;
 
 public class SignUp {
   private Connection con;
+  private Scanner sc;
 
+  public String Name;
   public SignUp() {
     try {
       String url = "jdbc:mysql://localhost:3306/project";
@@ -14,40 +16,45 @@ public class SignUp {
       Class.forName("com.mysql.cj.jdbc.Driver");
       con = DriverManager.getConnection(url, uname, pass);
       createCustomersTableIfNotExists(); // Create table if not exists
+      sc = new Scanner(System.in);
     } catch (ClassNotFoundException | SQLException e) {
-      System.out.println("Database Connection Error !!!" + e.getMessage());
+      System.out.println("Database Connection Error !!! " + e.getMessage());
     }
   }
 
-  public void createCustomersTableIfNotExists() throws SQLException {
-    String sql = "CREATE TABLE IF NOT EXISTS CUSTOMER (Customer_ID INT AUTO_INCREMENT PRIMARY KEY, USERNAME VARCHAR(50), PASSWORD VARCHAR(50), NAME VARCHAR(30))";
-    PreparedStatement stmt = con.prepareStatement(sql);
-    stmt.execute();
+  public void createCustomersTableIfNotExists() {
+    try {
+      String sql = "CREATE TABLE IF NOT EXISTS CUSTOMER (Customer_ID INT AUTO_INCREMENT PRIMARY KEY, USERNAME VARCHAR(50), PASSWORD VARCHAR(50), NAME VARCHAR(30))";
+      try (PreparedStatement stmt = con.prepareStatement(sql)) {
+        stmt.execute();
+      }
+    } catch (SQLException e) {
+      System.out.println("Error creating table: " + e.getMessage());
+    }
   }
 
-  Scanner sc = new Scanner(System.in);
-  protected String UserName;
-  protected String Password;
-
-  public void signUp() {
+  public void signUp(){
     System.out.print("Username (username will be in lowercase without spaces): ");
-    UserName = sc.next().toLowerCase().replaceAll("\\s", "");
+    String userName = sc.next().toLowerCase().replaceAll("\\s", "");
     System.out.print("Password: ");
-    Password = sc.next();
+    String password = sc.next();
     System.out.print("Enter Name: ");
-    String Name = sc.nextLine();
-    addToSql(Name);
+    sc.nextLine(); // Consume newline character
+    String name = sc.nextLine();
+    addToSql(userName, password, name);
   }
 
-  public void addToSql(String Name) {
+  public void addToSql(String userName, String password, String name) {
     try {
       String sql = "INSERT INTO CUSTOMER (USERNAME, PASSWORD, NAME) VALUES (?, ?, ?)";
-      PreparedStatement stmt = con.prepareStatement(sql);
-      stmt.setString(1, UserName);
-      stmt.setString(2, Password);
-      stmt.setString(3, Name);
-      stmt.executeUpdate();
-      System.out.println("Successfully Signed Up.");
+      try (PreparedStatement stmt = con.prepareStatement(sql)) {
+        stmt.setString(1, userName);
+        stmt.setString(2, password);
+        stmt.setString(3, name);
+        stmt.executeUpdate();
+        System.out.println("Successfully Signed Up.");
+        Name = name;
+      }
     } catch (SQLException e) {
       System.out.println("Database Query Execution Error !!! " + e.getMessage());
     }
